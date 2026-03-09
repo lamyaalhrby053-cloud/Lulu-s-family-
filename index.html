@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gift Exchange</title>
+</head>
+<body>
+
+<h2>Gift Exchange Draw</h2>
+
+<textarea id="names" placeholder="Enter names, one per line"></textarea>
+<br><br>
+<button onclick="draw()">Draw Names</button>
+
+<ul id="result"></ul>
+
+<script>
+function draw(){
+let names = document.getElementById("names").value.split("\n").filter(n=>n.trim()!="");
+let shuffled = [...names].sort(()=>Math.random()-0.5);
+
+let result = document.getElementById("result");
+result.innerHTML="";
+
+for(let i=0;i<names.length;i++){
+let receiver = shuffled[(i+1)%shuffled.length];
+let li = document.createElement("li");
+li.textContent = names[i] + " → " + receiver;
+result.appendChild(li);
+}
+}
+</script>
+
+</body>
+</html>
